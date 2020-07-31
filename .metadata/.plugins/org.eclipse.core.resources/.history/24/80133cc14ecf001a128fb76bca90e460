@@ -1,0 +1,27 @@
+package calculatorDemo;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class CalculatorTest {
+
+	public static void main(String[] args) {
+		
+	}
+
+	public void openCalculator() {
+		
+		DesiredCapabilities cap = new DesiredCapabilities();
+		
+		//Device setup
+		cap.setCapability("deviceName", "Moto E4 Plus");	//device model
+		cap.setCapability("udid", "ZH33L2THP6");	//cmd prompt --> adb devices
+		cap.setCapability("platformName", "Android");	//device OS name
+		cap.setCapability("platformVersion", "7.1.1");	//device OS version
+		
+		//App setup
+		cap.setCapability("appPackage", "com.google.android.calculator");	//APK info app
+		cap.setCapability("appActivity", "com.android.calculator2.Calculator");	//APK info app
+		
+	}
+	
+}

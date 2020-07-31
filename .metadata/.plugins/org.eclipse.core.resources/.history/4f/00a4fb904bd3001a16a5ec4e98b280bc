@@ -1,0 +1,46 @@
+package tests;
+
+import static org.testng.Assert.fail;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.testng.annotations.Test;
+
+public class LoginTest extends BaseClass{
+
+	@Test
+	public void LoginToOrangeHRM() throws Exception {
+		
+		System.out.println("Login test started");
+		
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+	    driver.findElement(By.id("txtUsername")).click();
+	    driver.findElement(By.id("txtUsername")).clear();
+	    driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+	    driver.findElement(By.id("txtPassword")).click();
+	    driver.findElement(By.id("txtPassword")).clear();
+	    driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+	    for (int second = 0;; second++) {
+	    	if (second >= 30) fail("timeout");
+	    	try { if (isElementPresent(By.id("btnLogin"))) break; } catch (Exception e) {}
+	    	Thread.sleep(1000);
+	    }
+	    driver.findElement(By.id("btnLogin")).click();
+	    driver.findElement(By.id("welcome")).click();
+	    driver.findElement(By.linkText("Logout")).click();
+	    
+		System.out.println("Login test ended");
+		
+	}
+	
+	private boolean isElementPresent(By by) {
+	    try {
+	      driver.findElement(by);
+	      return true;
+	    } catch (NoSuchElementException e) {
+	      return false;
+	    }
+	  }
+
+}
