@@ -1,0 +1,54 @@
+package mobileElementHandlingDemo;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.MobileCapabilityType;
+
+public class VerticalScrolling {
+
+	static AppiumDriver<MobileElement> driver;
+	static DesiredCapabilities cap;
+	
+	public static void main(String[] args) throws MalformedURLException, InterruptedException {
+		
+		cap = new DesiredCapabilities();
+
+		//Device setup
+		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
+		cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+		cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.1");
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Moto E4 Plus");
+		cap.setCapability(MobileCapabilityType.UDID, "192.168.0.3:5555");
+		
+		//Relative path of the apk directory doesn't work. Need to provide absolute path.
+		cap.setCapability(MobileCapabilityType.APP, "E:\\Softwares\\My PC Apps\\Appium\\Workspace\\LearnAppium\\APK Files\\API Demos.apk");
+		
+		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		driver = new AppiumDriver<MobileElement>(url, cap);
+		
+		//Click on views
+		driver.findElements(By.id("android:id/text1")).get(11).click();
+		
+		//capturing all the list items
+		AndroidElement list = (AndroidElement)driver.findElement(By.id("android:id/text1"));
+		
+		//scrolling down till we get switches
+		MobileElement listItem = (MobileElement)driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
+				+"new UiSelector().description(\"Switches\"));"));
+		
+		System.out.println("The location of switches is : "+listItem.getLocation());
+		listItem.click();
+		
+		driver.quit();
+		
+	}
+
+}

@@ -35,8 +35,7 @@ public class VerifyCalculatorAddition {
 		
 		//Device setup
 		cap.setCapability("deviceName", "Moto E4 Plus");	//device model
-//		cap.setCapability("udid", "ZH33L2THP6");	//cmd prompt --> adb devices -- USB cable connected
-		cap.setCapability("udid", "192.168.0.5:5555");	//cmd prompt --> adb devices -- WiFi connected
+		cap.setCapability("udid", "192.168.0.3:5555");	//cmd prompt --> adb devices -- WiFi connected
 		cap.setCapability("platformName", "Android");	//device OS name
 		cap.setCapability("platformVersion", "7.1.1");	//device OS version
 		
@@ -75,6 +74,8 @@ public class VerifyCalculatorAddition {
 		}else {
 			System.out.println("Test case failed");
 		}
+		
+		driver.quit();
 		
 	}
 	

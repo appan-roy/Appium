@@ -1,0 +1,9 @@
+package appInstallationDemo;
+
+public class InstallAPK {
+
+	public void setUp() {
+		
+	}
+	
+}
